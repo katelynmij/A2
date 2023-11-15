@@ -8,17 +8,9 @@ public class UserGroup implements SystemEntry, Visitable {
 	private String id;
 	private static int numOfUserGroups = 0;
 	private List<User> userGroup;
-	private Timestamp creationTime;
 
 
-	public void setCreationTime(Timestamp creationTime) {
-		this.creationTime = creationTime;
-		System.out.println("Creation time for user group: " + this.creationTime);
-	}
 
-	public Timestamp getCreationTime() {
-		return creationTime;
-	}
 	
 	public UserGroup(String id){
 		super();

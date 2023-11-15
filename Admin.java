@@ -41,8 +41,7 @@ public class Admin extends TreeView implements SystemEntry, UserTypeVisitor{
     	this.userList.add(user);
     	
 
-     	Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-    	this.currentUser.setCreationTime(timestamp);
+  
     	
 		System.out.println("Total users: " + getTotalUsers());
 	 	System.out.println("Added " + user + " user");
@@ -55,8 +54,7 @@ public class Admin extends TreeView implements SystemEntry, UserTypeVisitor{
     	this.userGroupList.add(userGroup);
     	
 
-    	Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-    	this.currentUserGroup.setCreationTime(timestamp);
+
     
     	System.out.println("Total user groups: " + getTotalUserGroups());
     	System.out.println("Added " + userGroup + " user group");
@@ -155,13 +153,5 @@ public class Admin extends TreeView implements SystemEntry, UserTypeVisitor{
 	}
 	
 
-	public String getLastUpdatedUser() {
-		if(currentUser.getLastUpdateUser() == null) {
-			return "N/A";
-		}
-		else {
-			return currentUser.getLastUpdateUser();
-		}
-	}
-	
+
 }

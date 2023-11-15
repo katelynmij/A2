@@ -95,7 +95,7 @@ public class UserView extends JPanel implements ActionListener{
 
         panel3 = new JPanel();
         panel3.setBounds(0, 290, 520, 20);
-		panel3.add(new JLabel("Creation Time: " + getCreationTime(), SwingConstants.CENTER));
+		panel3.add(new JLabel("Creation Time: " +  SwingConstants.CENTER));
 		
 		
 
@@ -115,26 +115,7 @@ public class UserView extends JPanel implements ActionListener{
 		
 	}
 
-	String getCreationTime() {
-		if(this.user == null) {
-			return "Printed in console";
-		}
-		else {
-			return this.user.getCreationTime().toString();
-		}
-	}
 
-	String getLastUpdateTime() {
-		if(this.user == null) {
-			return "Printed in console";
-		}
-		else if( this.user.getLastUpdateTime() == null) {
-			return "N/A";
-		}
-		else {
-			return this.user.getLastUpdateTime().toString();
-		}
-	}
 	
 	User getCurrUser() {
 		return this.user;
@@ -163,15 +144,14 @@ public class UserView extends JPanel implements ActionListener{
 
 		this.messages = this.user.getMessages();
 		
-	
-		getLastUpdateTime();
+
 		
 
 		JScrollPane scroll = new JScrollPane(new JList(this.messages.toArray()));
 		scroll.setPreferredSize(new Dimension(450, 150));
 		scrollPanel2.add(scroll);
 
-		panel4.add(new JLabel("Last Update Time: " + getLastUpdateTime(), SwingConstants.CENTER));
+	
 		panel4.revalidate();
 		panel4.repaint();
 
@@ -222,7 +202,6 @@ public class UserView extends JPanel implements ActionListener{
 			scrollPanel2.add(scroll);
 			
 		
-			panel4.add(new JLabel("Last Update Time: " + getLastUpdateTime(), SwingConstants.CENTER));
 			panel4.revalidate();
 			panel4.repaint();
 			

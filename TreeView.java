@@ -102,8 +102,7 @@ public class TreeView extends JPanel implements ActionListener {
         percentageButton = new JButton("Show Positive Percentage");
         percentageButton.addActionListener(this);
 
-        verification = new JButton("Verification");
-        verification.addActionListener(this);
+      
 
 
         lastUpdatedUser = new JButton("Last Update");
