@@ -35,8 +35,7 @@ public class TreeView extends JPanel implements ActionListener {
     private JButton percentageButton;
     
 
-    private JButton verification;
-    private JButton lastUpdatedUser;
+
     
     private Admin adminInstance;
     
@@ -105,8 +104,6 @@ public class TreeView extends JPanel implements ActionListener {
       
 
 
-        lastUpdatedUser = new JButton("Last Update");
-        lastUpdatedUser.addActionListener(this);
         
 
         treePanel.setPreferredSize(new Dimension(300, 150));
@@ -125,8 +122,6 @@ public class TreeView extends JPanel implements ActionListener {
         panel2.add(groupTotalButton);
         panel2.add(messageTotalButton);
         panel2.add(percentageButton);
-        panel2.add(verification);
-        panel2.add(lastUpdatedUser);
         add(panel, BorderLayout.SOUTH);  
         add(panel2, BorderLayout.EAST);
     }
@@ -223,26 +218,7 @@ public class TreeView extends JPanel implements ActionListener {
         	JOptionPane.showMessageDialog(null, positivePercentage,"Positive Percentage(%)", JOptionPane.PLAIN_MESSAGE);
         	System.out.println("Positive percentage button");
        } 
-       else if(e.getSource() == verification) {
-    	   this.adminInstance = Admin.getInstance();
-
-    	   if(isValid == true) {
-    		   System.out.println("User id is valid");
-    	   }
-    	   else {
-
-    		  JOptionPane.showMessageDialog(null, "The id either contains a space or is already taken", "Not Valid", JOptionPane.ERROR_MESSAGE);
-          	  System.out.println("User id is not valid");   
-    		   	
-    	   }
-    	   System.out.println("Verification button");
-       }
-       else if(e.getSource() == lastUpdatedUser) {    	   
-
-       	   JOptionPane.showMessageDialog(null, "On the console", "Last Updated User", JOptionPane.PLAIN_MESSAGE);
-    	  
-       	   System.out.println("Last updated user button");
-       }
+       
     }
  
 

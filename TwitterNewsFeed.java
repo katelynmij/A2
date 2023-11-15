@@ -40,7 +40,7 @@ public class TwitterNewsFeed implements Subject{
 		
 		if(!observers.isEmpty() && observers != null) {
 			for (Observer obs : observers) {
-				obs.update(sender, obs.toString(), message, lastUpdateTime);
+				obs.update(sender, obs.toString(), message);
 			}
 			
 		}

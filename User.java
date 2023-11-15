@@ -96,7 +96,6 @@ public class User implements SystemEntry, Observer, Visitable{
 		
 		messages.put(getId(), this.message);
 		  
-		System.out.println("LAST UPDATED USER: " + getId());			
 
 	    twitterNewsFeed.displayNewsFeed(messages);
 	}
