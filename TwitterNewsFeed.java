@@ -1,6 +1,8 @@
 import java.util.List;
+import java.util.Map.Entry;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 
@@ -40,7 +42,7 @@ public class TwitterNewsFeed implements Subject{
 		
 		if(!observers.isEmpty() && observers != null) {
 			for (Observer obs : observers) {
-				obs.update(sender, obs.toString(), message);
+				obs.update(sender, obs.toString(), message, lastUpdateTime);
 			}
 			
 		}

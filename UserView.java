@@ -1,16 +1,26 @@
 import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Box;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 
 public class UserView extends JPanel implements ActionListener{
@@ -31,6 +41,7 @@ public class UserView extends JPanel implements ActionListener{
 	
 	private List<String> followers;
 	private List<String> messages;
+	private String lastUpdateTime;
 	private JPanel scrollPanel = new JPanel();
 	private JPanel scrollPanel2 = new JPanel();
 	
@@ -115,6 +126,24 @@ public class UserView extends JPanel implements ActionListener{
 		
 	}
 
+	String getCreationTime() {
+		if(this.user == null) {
+			return "Printed in console";
+		} else {
+			return this.user.getCreationTime().toString();
+		}
+	}
+
+	String getLastUpdateTime() {
+		if(this.user == null) {
+			return "Printed in console";
+		} else if(this.user.getLastUpdateTime() == null) {
+			return "N/A";
+		} else {
+			return this.user.getLastUpdateTime().toString();
+		}
+	}
+
 
 	
 	User getCurrUser() {
@@ -144,14 +173,13 @@ public class UserView extends JPanel implements ActionListener{
 
 		this.messages = this.user.getMessages();
 		
-
-		
+		getLastUpdateTime();
 
 		JScrollPane scroll = new JScrollPane(new JList(this.messages.toArray()));
 		scroll.setPreferredSize(new Dimension(450, 150));
 		scrollPanel2.add(scroll);
 
-	
+		panel4.add(new JLabel("Last Update Time: " + getLastUpdateTime(), SwingConstants.CENTER));
 		panel4.revalidate();
 		panel4.repaint();
 
@@ -201,7 +229,7 @@ public class UserView extends JPanel implements ActionListener{
 			scroll.setPreferredSize(new Dimension(450, 150));
 			scrollPanel2.add(scroll);
 			
-		
+			panel4.add(new JLabel("Last Update Time: " + getLastUpdateTime(), SwingConstants.CENTER));
 			panel4.revalidate();
 			panel4.repaint();
 			

@@ -1,3 +1,4 @@
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +17,10 @@ public class User implements SystemEntry, Observer, Visitable{
 	private List<String> listOfFollowers;
 	private List<String> listOfMessages;
 	private TwitterNewsFeed twitterNewsFeed;
+
+	private Timestamp creationTime;
+	private Timestamp lastUpdateTime;
+	private String lastUpdateUser;
 	
 
 
@@ -44,7 +49,25 @@ public class User implements SystemEntry, Observer, Visitable{
 		this.id = id;
 	}
 	
+	public void setCreationTime(Timestamp creationTime) {
+		this.creationTime = creationTime;
+	}
 	
+	public Timestamp getCreationTime() {
+		return creationTime;
+	}
+
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
+	}
+
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+
+	public String getLastUpdateUser() {
+		return lastUpdateUser;
+	}
 
 	
 
@@ -88,6 +111,11 @@ public class User implements SystemEntry, Observer, Visitable{
 		String post;
 		numOfMessages++;	
 		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		setLastUpdateTime(timestamp);
+		System.out.println("UPDATE TIME: " + getLastUpdateTime());
+
+		lastUpdateUser = getId();
 	
 		
 		post = getId() + ": " + message;
@@ -95,9 +123,31 @@ public class User implements SystemEntry, Observer, Visitable{
 		Arrays.asList(this.message);
 		
 		messages.put(getId(), this.message);
-		  
-
+		
+		System.out.println("LAST UPDATED USER: " + getId());
+		twitterNewsFeed.notifyObservers(getId(), message, getLastUpdateTime());
 	    twitterNewsFeed.displayNewsFeed(messages);
+	}
+
+	public void update(String sender, String obs, String message, Timestamp lastUpdateTime) {
+		String post;
+
+		if(message == null) {
+			System.out.println("No message");
+		} else {
+			numOfMessages++;
+
+			post = sender + ": " + message;
+			this.message.add(post);
+			Arrays.asList(this.message);
+
+			messages.put(obs, this.message);
+
+			setLastUpdateTime(lastUpdateTime);
+
+			System.out.println("Message to " + obs + " from " + sender + ": " + message);
+			System.out.println("FOLLOWER LAST UPDATE TIME: " + getLastUpdateTime());
+		}
 	}
 
 
@@ -125,9 +175,5 @@ public class User implements SystemEntry, Observer, Visitable{
 	}
 
 
-    @Override
-    public void update(String sender, String obs, String message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
+    
 }
